@@ -17,7 +17,25 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedReloadButton(_ sender: UIButton) {
-        weatherImage.image = UIImage(named: YumemiWeather.fetchWeatherCondition())
+        do {
+            weatherImage.image = UIImage(named: try YumemiWeather.fetchWeatherCondition(at: "tokyo"))
+        } catch YumemiWeatherError.invalidParameterError {
+            showErrorAlert()
+        } catch YumemiWeatherError.unknownError {
+            showErrorAlert()
+        } catch {
+            //絶対に入ることのないerror-catchだが記述が必要
+        }
+    }
+    
+    private func showErrorAlert() {
+        let errorAlert = UIAlertController(title: "error", message: "エラーが発生しました", preferredStyle: .alert)
+        errorAlert.addTextField()
+        let okAction = UIAlertAction(title: "OK", style: .cancel) {_ in
+            self.dismiss(animated: true)
+        }
+        errorAlert.addAction(okAction)
+        present(errorAlert, animated: true)
     }
 
     

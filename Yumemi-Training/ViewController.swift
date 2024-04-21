@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,23 +21,12 @@ class ViewController: UIViewController {
     
     @IBAction func tappedReloadButton(_ sender: UIButton) {
         do {
-            let jsonString = """
-            {
-                "area": "tokyo",
-                "date": "2020-04-01T12:00:00+09:00",
-            }
-            """
-            let responseData = try YumemiWeather.fetchWeather(jsonString)
-            
-            //レスポンスで受け取ったJSONをデコード
-            let decoder = JSONDecoder()
-            //Data型として扱えるように.utf8に変換してあげる必要がある
-            if let jsonData = responseData.data(using: .utf8) {
-                //WeatherResponse.selfでデコードするオブジェクトの型指定
-                let decodeData = try decoder.decode(WeatherResponse.self, from: jsonData)
-                self.maxTemperatureLabel.text = String(decodeData.maxTemperature)
-                self.minTemperatureLabel.text = String(decodeData.minTemperature)
-                self.weatherImage.image = UIImage(named: decodeData.weatherCondition)
+            //ここの部分のJSON形式でリクエスト送るところをエンコード処理を実装して簡易的にJSON形式を作れるようにしたい
+            let encodeData = try encodeWeatherRequest("tokyo", "2020-04-01T12:00:00+09:00" )
+            if let weatherResponseData = try fetchWeatherData(encodeData) {
+                self.maxTemperatureLabel.text = String(weatherResponseData.maxTemperature)
+                self.minTemperatureLabel.text = String(weatherResponseData.minTemperature)
+                self.weatherImage.image = UIImage(named: weatherResponseData.weatherCondition)
             }
         } catch YumemiWeatherError.unknownError {
             showErrorAlert()
@@ -45,6 +35,25 @@ class ViewController: UIViewController {
         }catch {
             //絶対に入ることのないerror-catchだが記述が必要
         }
+    }
+    
+    private func encodeWeatherRequest(_ area: String, _ date: String) throws -> Data {
+        let jsonEncode = JSONEncoder()
+        let data = try jsonEncode.encode(WeatherRequest(area: area, date: date))
+        return data
+    }
+    
+    private func fetchWeatherData(_ jsonData: Data) throws -> WeatherResponse? {
+        //レスポンスで受け取ったJSONをデコード
+        let decoder = JSONDecoder()
+        let responseData = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: String.Encoding.utf8)!)
+        //Data型として扱えるように.utf8に変換してあげる必要がある
+        if let jsonData = responseData.data(using: .utf8) {
+            //WeatherResponse.selfでデコードするオブジェクトの型指定
+            let decodeData = try decoder.decode(WeatherResponse.self, from: jsonData)
+            return decodeData
+        }
+        return nil
     }
     
     private func showErrorAlert() {

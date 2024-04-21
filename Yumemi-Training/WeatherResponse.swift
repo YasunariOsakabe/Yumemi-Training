@@ -19,4 +19,6 @@ struct WeatherResponse: Codable {
         case date
         case weatherCondition = "weather_condition"
     }
+    //JSONDecoderの.keyDecodingStrategy = .convertFromSnakeCaseを指定することで、CodingKeys同様の働きをしてくれる
+
 }

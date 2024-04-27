@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		3E745A482BD47DA500DF1C3A /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E745A472BD47DA500DF1C3A /* WeatherResponse.swift */; };
 		3E745A4C2BD4DA3400DF1C3A /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E745A4B2BD4DA3400DF1C3A /* WeatherRequest.swift */; };
+		3EBFF0082BDC8C70005F3A9A /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFF0072BDC8C70005F3A9A /* TopViewController.swift */; };
 		3EE45FA82BD1D955009A90C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE45FA72BD1D955009A90C2 /* AppDelegate.swift */; };
 		3EE45FAA2BD1D955009A90C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE45FA92BD1D955009A90C2 /* SceneDelegate.swift */; };
-		3EE45FAC2BD1D955009A90C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE45FAB2BD1D955009A90C2 /* ViewController.swift */; };
+		3EE45FAC2BD1D955009A90C2 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE45FAB2BD1D955009A90C2 /* WeatherViewController.swift */; };
 		3EE45FAF2BD1D955009A90C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EE45FAD2BD1D955009A90C2 /* Main.storyboard */; };
 		3EE45FB12BD1D957009A90C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EE45FB02BD1D957009A90C2 /* Assets.xcassets */; };
 		3EE45FB42BD1D957009A90C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EE45FB22BD1D957009A90C2 /* LaunchScreen.storyboard */; };
@@ -41,10 +42,11 @@
 /* Begin PBXFileReference section */
 		3E745A472BD47DA500DF1C3A /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		3E745A4B2BD4DA3400DF1C3A /* WeatherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
+		3EBFF0072BDC8C70005F3A9A /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		3EE45FA42BD1D955009A90C2 /* Yumemi-Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yumemi-Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE45FA72BD1D955009A90C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EE45FA92BD1D955009A90C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3EE45FAB2BD1D955009A90C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3EE45FAB2BD1D955009A90C2 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		3EE45FAE2BD1D955009A90C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3EE45FB02BD1D957009A90C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EE45FB32BD1D957009A90C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,13 +109,14 @@
 			children = (
 				3EE45FA72BD1D955009A90C2 /* AppDelegate.swift */,
 				3EE45FA92BD1D955009A90C2 /* SceneDelegate.swift */,
-				3EE45FAB2BD1D955009A90C2 /* ViewController.swift */,
+				3EE45FAB2BD1D955009A90C2 /* WeatherViewController.swift */,
 				3EE45FAD2BD1D955009A90C2 /* Main.storyboard */,
 				3EE45FB02BD1D957009A90C2 /* Assets.xcassets */,
 				3EE45FB22BD1D957009A90C2 /* LaunchScreen.storyboard */,
 				3EE45FB52BD1D957009A90C2 /* Info.plist */,
 				3E745A472BD47DA500DF1C3A /* WeatherResponse.swift */,
 				3E745A4B2BD4DA3400DF1C3A /* WeatherRequest.swift */,
+				3EBFF0072BDC8C70005F3A9A /* TopViewController.swift */,
 			);
 			path = "Yumemi-Training";
 			sourceTree = "<group>";
@@ -272,8 +275,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EBFF0082BDC8C70005F3A9A /* TopViewController.swift in Sources */,
 				3E745A482BD47DA500DF1C3A /* WeatherResponse.swift in Sources */,
-				3EE45FAC2BD1D955009A90C2 /* ViewController.swift in Sources */,
+				3EE45FAC2BD1D955009A90C2 /* WeatherViewController.swift in Sources */,
 				3EE45FA82BD1D955009A90C2 /* AppDelegate.swift in Sources */,
 				3E745A4C2BD4DA3400DF1C3A /* WeatherRequest.swift in Sources */,
 				3EE45FAA2BD1D955009A90C2 /* SceneDelegate.swift in Sources */,

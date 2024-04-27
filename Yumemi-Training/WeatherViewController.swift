@@ -8,7 +8,7 @@
 import UIKit
 import YumemiWeather
 
-class ViewController: UIViewController {
+class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
@@ -35,6 +35,10 @@ class ViewController: UIViewController {
         }catch {
             //絶対に入ることのないerror-catchだが記述が必要
         }
+    }
+    
+    @IBAction func tappedCloseButton(_ sender: UIButton) {
+        self.dismiss(animated: true)
     }
     
     private func encodeWeatherRequest(_ area: String, _ date: String) throws -> Data {

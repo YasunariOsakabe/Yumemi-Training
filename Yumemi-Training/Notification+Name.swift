@@ -8,5 +8,5 @@
 import UIKit
 
 extension NSNotification.Name {
-    
+    static let activeApp = Notification.Name("ActiveApp")
 }

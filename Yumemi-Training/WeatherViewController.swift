@@ -49,22 +49,7 @@ class WeatherViewController: UIViewController {
     
     
     @objc func fetchWeatherDataNotification(_ notification: Notification) {
-        do {
-            //ここの部分のJSON形式でリクエスト送るところをエンコード処理を実装して簡易的にJSON形式を作れるようにしたい
-            let encodeData = try encodeWeatherRequest("tokyo", "2020-04-01T12:00:00+09:00" )
-            if let weatherResponseData = try decorderWeatherData(encodeData) {
-                self.maxTemperatureLabel.text = String(weatherResponseData.maxTemperature)
-                self.minTemperatureLabel.text = String(weatherResponseData.minTemperature)
-                self.weatherImage.image = UIImage(named: weatherResponseData.weatherCondition)
-            }
-        } catch YumemiWeatherError.unknownError {
-            showErrorAlert()
-        } catch YumemiWeatherError.invalidParameterError {
-            showErrorAlert()
-        }catch {
-            //絶対に入ることのないerror-catchだが記述が必要
-        }
-        
+        fetchWeatherData()
     }
     
     func fetchWeatherData() {

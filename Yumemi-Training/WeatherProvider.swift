@@ -5,4 +5,9 @@
 //  Created by 小坂部泰成 on 2024/05/12.
 //
 
-import Foundation
+import YumemiWeather
+
+class WeatherProvider: WeatherFetching {
+    
+}
+

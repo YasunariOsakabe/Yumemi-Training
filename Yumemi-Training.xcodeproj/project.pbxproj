@@ -181,7 +181,6 @@
 				E6D2EC61281E2D739B836CCE /* Pods-Yumemi-TrainingTests.debug.xcconfig */,
 				54BC4363F3B3AE4596672D79 /* Pods-Yumemi-TrainingTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -197,6 +196,7 @@
 				3EE45FA12BD1D955009A90C2 /* Frameworks */,
 				3EE45FA22BD1D955009A90C2 /* Resources */,
 				408BC8CF1A979FF96EFA8963 /* [CP] Embed Pods Frameworks */,
+				3EBC9E2D2BF8AC11005D2CFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -282,7 +282,7 @@
 			);
 			mainGroup = 3EE45F9B2BD1D955009A90C2;
 			packageReferences = (
-				3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training.git" */,
+				3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training" */,
 			);
 			productRefGroup = 3EE45FA52BD1D955009A90C2 /* Products */;
 			projectDirPath = "";
@@ -323,6 +323,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3EBC9E2D2BF8AC11005D2CFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Define output file. Change \"$PROJECT_DIR/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"$PROJECT_DIR/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/WeatherFetching.swift\" \\\n\"$INPUT_DIR/WeatherProvider.swift\" \\\n\"$INPUT_DIR/WeatherViewController.swift\"\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+		};
 		408BC8CF1A979FF96EFA8963 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -792,7 +809,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training.git" */ = {
+		3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yumemi-inc/ios-training.git";
 			requirement = {
@@ -805,7 +822,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		3EE45FD82BD1D999009A90C2 /* YumemiWeather */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training.git" */;
+			package = 3EE45FD72BD1D999009A90C2 /* XCRemoteSwiftPackageReference "ios-training" */;
 			productName = YumemiWeather;
 		};
 /* End XCSwiftPackageProductDependency section */

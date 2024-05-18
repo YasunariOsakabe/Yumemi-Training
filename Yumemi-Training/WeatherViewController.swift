@@ -8,6 +8,11 @@
 import UIKit
 import YumemiWeather
 
+protocol WeatherFetching {
+    //天気予報を取得する関数を宣言する
+    func fetchWeatherData()
+}
+
 class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!

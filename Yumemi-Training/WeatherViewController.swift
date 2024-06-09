@@ -17,6 +17,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var syncLoadingIndicator: UIActivityIndicatorView!
     
     private var weatherProvider: WeatherFetching!
     

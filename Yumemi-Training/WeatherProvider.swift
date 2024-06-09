@@ -35,7 +35,7 @@ class WeatherProvider: WeatherFetching {
     private func decorderWeatherData(_ jsonData: Data) throws -> WeatherResponse? {
         //レスポンスで受け取ったJSONをデコード
         let decoder = JSONDecoder()
-        let responseData = try YumemiWeather.fetchWeather(String(data: jsonData, encoding: String.Encoding.utf8)!)
+        let responseData = try YumemiWeather.syncFetchWeather(String(data: jsonData, encoding: String.Encoding.utf8)!)
         //Data型として扱えるように.utf8に変換してあげる必要がある
         if let jsonData = responseData.data(using: .utf8) {
             //WeatherResponse.selfでデコードするオブジェクトの型指定

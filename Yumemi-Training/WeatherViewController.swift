@@ -26,6 +26,7 @@ class WeatherViewController: UIViewController {
         // Do any additional setup after loading the view.
         weatherProvider = WeatherProvider()
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherDataNotification(_ :)), name: Notification.Name.activeApp, object: nil)
+        self.syncLoadingIndicator.isHidden = true
     }
     
     @IBAction func tappedReloadButton(_ sender: UIButton) {
@@ -44,16 +45,34 @@ class WeatherViewController: UIViewController {
     }
     
     func fetchWeatherData() {
-        weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00") { [weak self] result in
-            switch result {
-            case .success(let weatherResponse):
-                self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
-                self?.minTemperatureLabel.text = String(weatherResponse.minTemperature)
-                self?.weatherImage.image = UIImage(named: weatherResponse.weatherCondition)
-            case .failure:
-                self?.showErrorAlert()
+        self.showLodingIndicator()
+        DispatchQueue.global().async {
+            self.weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00") { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.hideLodingIndicator()
+                    switch result {
+                    case .success(let weatherResponse):
+                        self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
+                        self?.minTemperatureLabel.text = String(weatherResponse.minTemperature)
+                        self?.weatherImage.image = UIImage(named: weatherResponse.weatherCondition)
+                    case .failure:
+                        self?.showErrorAlert()
+                    }
+                }
             }
+            
+            
         }
+    }
+    
+    private func showLodingIndicator () {
+        self.syncLoadingIndicator.isHidden = false
+        self.syncLoadingIndicator.startAnimating()
+    }
+    
+    private func hideLodingIndicator () {
+        self.syncLoadingIndicator.stopAnimating()
+        self.syncLoadingIndicator.isHidden = true
     }
     
     private func showErrorAlert() {

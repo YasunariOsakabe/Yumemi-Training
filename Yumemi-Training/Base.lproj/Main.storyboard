@@ -121,8 +121,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zTV-Bx-E8W">
-                                <rect key="frame" x="186.66666666666666" y="569" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zTV-Bx-E8W">
+                                <rect key="frame" x="186.66666666666666" y="568" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -130,6 +130,8 @@
                         <constraints>
                             <constraint firstItem="wIQ-vL-LCk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4vm-Zv-ih1"/>
                             <constraint firstItem="iOD-Z6-S0V" firstAttribute="centerX" secondItem="fu2-NF-Csp" secondAttribute="centerX" id="BA3-OE-WME"/>
+                            <constraint firstItem="NqP-fx-R3C" firstAttribute="top" secondItem="zTV-Bx-E8W" secondAttribute="bottom" constant="30" id="Jf0-Id-8tb"/>
+                            <constraint firstItem="zTV-Bx-E8W" firstAttribute="top" secondItem="wIQ-vL-LCk" secondAttribute="bottom" constant="30" id="M9s-Ws-2FU"/>
                             <constraint firstItem="zTV-Bx-E8W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MVY-gY-GKd"/>
                             <constraint firstItem="NqP-fx-R3C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N1I-9v-QCY"/>
                             <constraint firstItem="og5-fw-BQW" firstAttribute="centerX" secondItem="O3H-xV-eVT" secondAttribute="centerX" id="dGy-f1-NTH"/>

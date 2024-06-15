@@ -19,14 +19,14 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var syncLoadingIndicator: UIActivityIndicatorView!
     
-    private var weatherProvider: WeatherFetching!
+    private var weatherProvider = WeatherProvider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        weatherProvider = WeatherProvider()
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherDataNotification(_ :)), name: Notification.Name.activeApp, object: nil)
         self.syncLoadingIndicator.isHidden = true
+        weatherProvider.weatherDataDelegate = self
     }
     
     deinit {
@@ -59,8 +59,6 @@ class WeatherViewController: UIViewController {
                         self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
                         self?.minTemperatureLabel.text = String(weatherResponse.minTemperature)
                         self?.weatherImage.image = UIImage(named: weatherResponse.weatherCondition)
-                        //値の更新がされた後にDelegate通知してログ出力してあげたい
-                        
                     case .failure:
                         self?.showErrorAlert()
                     }
@@ -90,6 +88,16 @@ class WeatherViewController: UIViewController {
         present(errorAlert, animated: true)
     }
 
+    
+}
+
+extension WeatherViewController: WeatherDataUpdateDelegate {
+    func weatherDataOutput(_ weatherData: WeatherResponse) {
+        print(weatherData.date)
+        print(weatherData.maxTemperature)
+        print(weatherData.minTemperature)
+        print(weatherData.weatherCondition)
+    }
     
 }
 

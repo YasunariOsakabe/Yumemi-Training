@@ -50,6 +50,7 @@ class WeatherViewController: UIViewController {
     
     func fetchWeatherData() {
         self.showLodingIndicator()
+        //定義元ではグローバルスレッドの指定がされていないため、呼び出し側で指定してあげる必要あり
         DispatchQueue.global().async {
             self.weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00") { [weak self] result in
                 DispatchQueue.main.async {

@@ -9,11 +9,15 @@ import YumemiWeather
 import Foundation
 
 class WeatherProvider: WeatherFetching {
+    
+    weak var weatherDataDelegate: WeatherDataUpdateDelegate?
+
     func fetchWeatherData(area: String, date: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
         do {
             let encodeData = try encodeWeatherRequest(area, date)//APIリクエスト
             if let weatherResponseData = try decorderWeatherData(encodeData) { //レスポンスJSONをdecode
                 completion(.success(weatherResponseData))
+                weatherDataDelegate?.weatherDataOutput(weatherResponseData) // デリゲートメソッドを呼び出し
             } else {
                 completion(.failure(YumemiWeatherError.unknownError))
             }

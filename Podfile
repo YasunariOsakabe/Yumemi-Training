@@ -4,7 +4,6 @@
 target 'Yumemi-Training' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod "Cuckoo"
 
 
   # Pods for Yumemi-Training
@@ -12,6 +11,8 @@ target 'Yumemi-Training' do
   target 'Yumemi-TrainingTests' do
     inherit! :search_paths
     # Pods for testing
+  pod "Cuckoo"
+
   end
 
   target 'Yumemi-TrainingUITests' do

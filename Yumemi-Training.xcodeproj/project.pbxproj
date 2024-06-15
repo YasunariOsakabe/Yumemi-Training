@@ -107,6 +107,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E0CDBA92C1D1A4F0096CE32 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3EE45FA72BD1D955009A90C2 /* AppDelegate.swift */,
+				3EE45FA92BD1D955009A90C2 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		3E0CDBAB2C1D1A640096CE32 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3EE45FAB2BD1D955009A90C2 /* WeatherViewController.swift */,
+				3EBFF0072BDC8C70005F3A9A /* TopViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3E0CDBAD2C1D1A8B0096CE32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E745A472BD47DA500DF1C3A /* WeatherResponse.swift */,
+				3E745A4B2BD4DA3400DF1C3A /* WeatherRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3E0CDBAE2C1D1A980096CE32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3EE45FAD2BD1D955009A90C2 /* Main.storyboard */,
+				3EE45FB22BD1D957009A90C2 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E0CDBAF2C1D1AC80096CE32 /* Extensition */ = {
+			isa = PBXGroup;
+			children = (
+				3EB983182BDDFC27000BB424 /* Notification+Name.swift */,
+			);
+			path = Extensition;
+			sourceTree = "<group>";
+		};
 		3EE45F9B2BD1D955009A90C2 = {
 			isa = PBXGroup;
 			children = (
@@ -132,17 +176,13 @@
 		3EE45FA62BD1D955009A90C2 /* Yumemi-Training */ = {
 			isa = PBXGroup;
 			children = (
-				3EE45FA72BD1D955009A90C2 /* AppDelegate.swift */,
-				3EE45FA92BD1D955009A90C2 /* SceneDelegate.swift */,
-				3EE45FAB2BD1D955009A90C2 /* WeatherViewController.swift */,
-				3EE45FAD2BD1D955009A90C2 /* Main.storyboard */,
+				3E0CDBAE2C1D1A980096CE32 /* View */,
+				3E0CDBAD2C1D1A8B0096CE32 /* Model */,
+				3E0CDBAB2C1D1A640096CE32 /* ViewController */,
+				3E0CDBA92C1D1A4F0096CE32 /* Delegate */,
+				3E0CDBAF2C1D1AC80096CE32 /* Extensition */,
 				3EE45FB02BD1D957009A90C2 /* Assets.xcassets */,
-				3EE45FB22BD1D957009A90C2 /* LaunchScreen.storyboard */,
 				3EE45FB52BD1D957009A90C2 /* Info.plist */,
-				3E745A472BD47DA500DF1C3A /* WeatherResponse.swift */,
-				3E745A4B2BD4DA3400DF1C3A /* WeatherRequest.swift */,
-				3EBFF0072BDC8C70005F3A9A /* TopViewController.swift */,
-				3EB983182BDDFC27000BB424 /* Notification+Name.swift */,
 				3E25B6D22BF0A20C00C00263 /* WeatherProvider.swift */,
 			);
 			path = "Yumemi-Training";

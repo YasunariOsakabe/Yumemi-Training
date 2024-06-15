@@ -29,6 +29,10 @@ class WeatherViewController: UIViewController {
         self.syncLoadingIndicator.isHidden = true
     }
     
+    deinit {
+         print("クラスが破棄されました")
+    }
+    
     @IBAction func tappedReloadButton(_ sender: UIButton) {
         fetchWeatherData()
     }
@@ -55,6 +59,8 @@ class WeatherViewController: UIViewController {
                         self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
                         self?.minTemperatureLabel.text = String(weatherResponse.minTemperature)
                         self?.weatherImage.image = UIImage(named: weatherResponse.weatherCondition)
+                        //値の更新がされた後にDelegate通知してログ出力してあげたい
+                        
                     case .failure:
                         self?.showErrorAlert()
                     }

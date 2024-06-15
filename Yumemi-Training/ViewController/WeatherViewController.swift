@@ -26,7 +26,7 @@ class WeatherViewController: UIViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(fetchWeatherDataNotification(_ :)), name: Notification.Name.activeApp, object: nil)
         self.syncLoadingIndicator.isHidden = true
-        weatherProvider.weatherDataDelegate = self
+        //weatherProvider.weatherDataDelegate = self
     }
     
     deinit {
@@ -54,6 +54,7 @@ class WeatherViewController: UIViewController {
             self.weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00") { [weak self] result in
                 DispatchQueue.main.async {
                     self?.hideLodingIndicator()
+                    print(result)
                     switch result {
                     case .success(let weatherResponse):
                         self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
@@ -91,13 +92,13 @@ class WeatherViewController: UIViewController {
     
 }
 
-extension WeatherViewController: WeatherDataUpdateDelegate {
-    func weatherDataOutput(_ weatherData: WeatherResponse) {
-        print(weatherData.date)
-        print(weatherData.maxTemperature)
-        print(weatherData.minTemperature)
-        print(weatherData.weatherCondition)
-    }
-    
-}
+//extension WeatherViewController: WeatherDataUpdateDelegate {
+//    func weatherDataOutput(_ weatherData: WeatherResponse) {
+//        print(weatherData.date)
+//        print(weatherData.maxTemperature)
+//        print(weatherData.minTemperature)
+//        print(weatherData.weatherCondition)
+//    }
+//    
+//}
 

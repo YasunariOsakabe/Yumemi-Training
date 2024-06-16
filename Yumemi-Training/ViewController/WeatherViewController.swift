@@ -34,7 +34,7 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func tappedReloadButton(_ sender: UIButton) {
-        fetchWeatherData()
+        callFetchWeatherData()
     }
     
     @IBAction func tappedCloseButton(_ sender: UIButton) {
@@ -45,10 +45,10 @@ class WeatherViewController: UIViewController {
     
     
     @objc func fetchWeatherDataNotification(_ notification: Notification) {
-        fetchWeatherData()
+        callFetchWeatherData()
     }
-    
-    func fetchWeatherData() {
+
+    func callFetchWeatherData() {
         self.showLodingIndicator()
         //定義元ではグローバルスレッドの指定がされていないため、呼び出し側で指定してあげる必要あり
         DispatchQueue.global().async {

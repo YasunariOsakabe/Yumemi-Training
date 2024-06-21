@@ -10,7 +10,7 @@ import YumemiWeather
 
 protocol WeatherFetching {
     //天気予報を取得する関数を宣言する
-    func fetchWeatherData(area: String, date: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void)
+    func fetchWeatherData(area: String, date: String) async throws -> WeatherResponse
     }
 
 class WeatherViewController: UIViewController {
@@ -34,7 +34,9 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func tappedReloadButton(_ sender: UIButton) {
-        fetchWeatherData()
+        Task { @MainActor in
+            await callFetchWeatherData()
+        }
     }
     
     @IBAction func tappedCloseButton(_ sender: UIButton) {
@@ -44,30 +46,20 @@ class WeatherViewController: UIViewController {
 
     
     
-    @objc func fetchWeatherDataNotification(_ notification: Notification) {
-        fetchWeatherData()
+    @objc func fetchWeatherDataNotification(_ notification: Notification) async {
+        await callFetchWeatherData()
     }
-    
-    func fetchWeatherData() {
+    //呼び出し側
+    func callFetchWeatherData() async  {
         self.showLodingIndicator()
-        //定義元ではグローバルスレッドの指定がされていないため、呼び出し側で指定してあげる必要あり
-        DispatchQueue.global().async {
-            self.weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00") { [weak self] result in
-                DispatchQueue.main.async {
-                    self?.hideLodingIndicator()
-                    print(result)
-                    switch result {
-                    case .success(let weatherResponse):
-                        self?.maxTemperatureLabel.text = String(weatherResponse.maxTemperature)
-                        self?.minTemperatureLabel.text = String(weatherResponse.minTemperature)
-                        self?.weatherImage.image = UIImage(named: weatherResponse.weatherCondition)
-                    case .failure:
-                        self?.showErrorAlert()
-                    }
-                }
-            }
-            
-            
+        do {
+            let result = try await weatherProvider.fetchWeatherData(area: "tokyo", date: "2020-04-01T12:00:00+09:00")
+            self.maxTemperatureLabel.text = String(result.maxTemperature)
+            self.minTemperatureLabel.text = String(result.minTemperature)
+            self.weatherImage.image = UIImage(named: result.weatherCondition)
+            self.hideLodingIndicator()
+        } catch {
+            self.showErrorAlert()
         }
     }
     

@@ -11,23 +11,14 @@ import Foundation
 class WeatherProvider: WeatherFetching {
     
     weak var weatherDataDelegate: WeatherDataUpdateDelegate?
-
-    func fetchWeatherData(area: String, date: String, completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
-        do {
+    
+    func fetchWeatherData(area: String, date: String) async throws -> WeatherResponse {
             let encodeData = try encodeWeatherRequest(area, date)//APIリクエスト
-            if let weatherResponseData = try decorderWeatherData(encodeData) { //レスポンスJSONをdecode
-                completion(.success(weatherResponseData))
-                weatherDataDelegate?.weatherDataOutput(weatherResponseData) // デリゲートメソッドを呼び出し
-            } else {
-                completion(.failure(YumemiWeatherError.unknownError))
+            let (data) = try await decorderWeatherData(encodeData)
+            guard let responseData = data else {
+                throw URLError(.badServerResponse)
             }
-        } catch YumemiWeatherError.unknownError {
-            completion(.failure(YumemiWeatherError.unknownError))
-        } catch YumemiWeatherError.invalidParameterError {
-            completion(.failure(YumemiWeatherError.invalidParameterError))
-        } catch {
-            completion(.failure(error))
-        }
+            return responseData
     }
     
     private func encodeWeatherRequest(_ area: String, _ date: String) throws -> Data {
@@ -36,7 +27,7 @@ class WeatherProvider: WeatherFetching {
         return data
     }
     
-    private func decorderWeatherData(_ jsonData: Data) throws -> WeatherResponse? {
+    private func decorderWeatherData(_ jsonData: Data) async throws -> WeatherResponse? {
         //レスポンスで受け取ったJSONをデコード
         let decoder = JSONDecoder()
         let responseData = try YumemiWeather.syncFetchWeather(String(data: jsonData, encoding: String.Encoding.utf8)!)
